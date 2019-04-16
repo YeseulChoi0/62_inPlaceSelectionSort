@@ -11,28 +11,52 @@ public class OrderedList_inArraySlots
 
     private ArrayList<Integer> list_iAS;
 
-    /** 
+    /**
       construct order from an unordered ArrayList
      */
     public OrderedList_inArraySlots
             ( ArrayList<Integer> unordered) {
-        this();  // violates the directions for this hw
-        
-        System.out.println( 
-            "Change this to report on progress."
-          + System.lineSeparator()
-          + "You were going to do that even without prompting, right?"
-          );
+        list_iAS = unordered;
+        for (int i = 0; i < unordered.size(); i++){
+          Integer saver = list_iAS.get(i);
+          int champIndex = champIndex(i);
+          list_iAS.set(i, list_iAS.get(champIndex));
+          list_iAS.set(champIndex, saver);
+
+        }
+
+
+        // for (int i = 0; i < unordered.size(); i++){
+        //   System.out.println(champIndex(i));
+        //   Integer save = list_iAS.get(i);
+        //   System.out.println(save);
+        //   list_iAS.set(i, list_iAS.get(champIndex(i)));
+        //   System.out.println(list_iAS.get(i));
+        //   list_iAS.set(champIndex(i), save);
+        //   System.out.println(list_iAS.get(champIndex(i)));
+        //   System.out.println(list_iAS);
+        // }
+
+
+
     }
 
 
-    /** 
+    /**
       helper function for constructor
       Write good English here, reflecting good thinking.
-      @return ??
+      @return the index of the smallest number of an Array starting from a starting point
      */
-     private int champIndex() {
-        return 0;  // replace this line
+     private int champIndex(int startingPoint) {
+        int min = Integer.MAX_VALUE;
+        int index = 0;
+        for (int i = startingPoint; i < list_iAS.size(); i++){
+          if (list_iAS.get(i) < min){
+            min = list_iAS.get(i);
+            index = i;
+          }
+        }
+        return index;
      }
 
 
